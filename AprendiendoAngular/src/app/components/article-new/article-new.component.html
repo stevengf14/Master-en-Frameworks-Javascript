@@ -10,7 +10,8 @@
                     El título no es válido
                 </small>
             </div>
-
+            {{article.user}}
+            {{article.password}}
             <div class="form-group">
                 <label for="content">Contenido</label>
                 <textarea type="text" name="content" #content="ngModel" [(ngModel)]="article.content" ></textarea>
