@@ -16,7 +16,42 @@ class Articles extends Component {
     }
 
     componentWillMount() {
-        this.getArticles();
+        var home = this.props.home;
+        var search = this.props.search;
+
+        if(home == "True"){
+            this.getLastArticles();
+        } else if(search && search != null && search != undefined) {
+            this.getArticlesBySearch(search);
+        }else {
+            this.getArticles();
+        }
+    }
+
+    getArticlesBySearch = (searched) => {
+        axios.get(this.url + "search/"+searched)
+            .then(res => {
+                this.setState({
+                    articles: res.data.articles,
+                    status: 'success'
+                });
+            })
+            .catch(err => {
+                this.setState({
+                    articles: [],
+                    status: 'success'
+                });
+            });
+    }
+
+    getLastArticles = () => {
+        axios.get(this.url + "articles/last")
+            .then(res => {
+                this.setState({
+                    articles: res.data.articles,
+                    status: 'success'
+                });
+            });
     }
 
     getArticles = () => {
@@ -26,7 +61,6 @@ class Articles extends Component {
                     articles: res.data.articles,
                     status: 'success'
                 });
-                console.log(this.state);
             });
     }
 

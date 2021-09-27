@@ -15,6 +15,10 @@ import Error from './components/Error';
 import Home from './components/Home';
 import Blog from './components/Blog';
 import Form from './components/Form'
+import Search from './components/Search';
+import { Redirect } from 'react-router';
+import Article from './components/Article';
+import CreateArticle from './components/CreateArticle';
 
 class Router extends Component {
 
@@ -31,12 +35,26 @@ class Router extends Component {
                     <Route exact path="/" component={Home} />
                     <Route exact path="/home" component={Home} />
                     <Route exact path="/blog" component={Blog} />
+                    <Route exact path="/blog/search/:search" component={Search} />
+                    <Route exact path="/blog/article/:id" component={Article} />
+                    <Route exact path="/blog/create" component={CreateArticle} />
                     <Route exact path="/form" component={Form} />
                     <Route exact path="/movies" component={Movies} />
                     <Route exact path="/blog/article/:id" render={() => (
                         <h1>Página Principal de link</h1>
                     )}
                     />
+                    <Route exact path="/redirect/:search" render ={
+                        (props) => {
+                            var search = props.match.params.search;
+                            return (
+                                <Redirect to={'/blog/search/'+search}/>
+                            );
+                        }
+                    } />
+                    
+
+
                     <Route exact path="/test-route" component={TestSection} />
                     <Route exact path="/my-component" component={MyComponent} />
 
