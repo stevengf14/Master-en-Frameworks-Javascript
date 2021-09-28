@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Slider from './Slider';
 import Sidebar from './Sidebar';
 
 class Form extends Component {
@@ -39,7 +38,6 @@ class Form extends Component {
         console.log(user);
     }
     render() {
-        var buttonString = "Ir al blog";
         if(this.state.user.name){
             var user = this.state.user;
         }

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Global from '../assets/Global';
-import Sidebar from './Sidebar';
 
 // Forms validations and alerts
 
@@ -31,7 +30,7 @@ class CreateArticle extends Component{
         event.preventDefault();
 
         // Rellenar stat con formulario
-        console.log(this.state)
+        // console.log(this.state)
 
         // Petición http post
         axios.post(this.url + "save", this.state.article)

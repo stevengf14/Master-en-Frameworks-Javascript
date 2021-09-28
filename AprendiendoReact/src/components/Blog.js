@@ -7,7 +7,6 @@ class Blog extends Component {
 
     render() {
 
-        var buttonString = "Ir al blog";
         return (
             <div id="blog">
                 <Slider

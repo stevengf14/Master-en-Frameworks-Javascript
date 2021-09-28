@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import Global from '../assets/Global';
 import Sidebar from './Sidebar';
 import Momment from 'react-moment';
+import { Link } from 'react-router-dom';
 import defaultImge from '../assets/images/default.jpg';
 
 class Article extends Component {
@@ -34,7 +34,7 @@ class Article extends Component {
             });
     }
 
-    componentWillMount() {
+    componentDidMount() {
         this.getArticleById();
     }
 
@@ -62,13 +62,13 @@ class Article extends Component {
                             <p>
                                {article.content}
                             </p>
-                            <a href="#" className="btn btn-warning">Editar</a>
-                            <a href="#" className="btn btn-danger">Eliminar</a>
+                            <Link to="/blog" className="btn btn-warning">Editar</Link>
+                            <Link to="/blog" className="btn btn-danger">Eliminar</Link>
                             <div className="clearfix"></div>
                         </article>
                     }
                     {
-                        !this.state.article && this.state.status == 'success' &&
+                        !this.state.article && this.state.status === 'success' &&
                         <div id="article">
                             <h2 className="subHeader">El artículo no existe</h2>
                             <p>Inténtalo de nuevo más tarde</p>

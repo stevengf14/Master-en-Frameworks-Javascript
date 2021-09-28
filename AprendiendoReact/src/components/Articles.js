@@ -15,13 +15,13 @@ class Articles extends Component {
         status: null
     }
 
-    componentWillMount() {
+    componentDidMount() {
         var home = this.props.home;
         var search = this.props.search;
 
-        if(home == "True"){
+        if(home === "True"){
             this.getLastArticles();
-        } else if(search && search != null && search != undefined) {
+        } else if(search && search != null && search !== undefined) {
             this.getArticlesBySearch(search);
         }else {
             this.getArticles();
@@ -68,7 +68,7 @@ class Articles extends Component {
         if (this.state.articles.length >= 1) {
             var articlesList = this.state.articles.map((article, i) =>{
                 return (
-                    <article className="article-item" id="article-template" key={i}>
+                    <article key={article._id} className="article-item" id="article-template">
                         <div className="image-wrap">
                             {
                                 article.image != null ? (

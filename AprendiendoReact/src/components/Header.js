@@ -8,12 +8,14 @@ class Header extends Component {
             <header id="header">
                 <div className="center">
                     { /* LOGO */ }
-                    <div id="logo">
-                        <img src={logo} className="app-logo" alt="Logotipo" />
-                        <span id="brand">
-                            <strong>Curso</strong>React
-                    </span>
-                    </div>
+                    <NavLink to="/home" activeClassName="active">
+                        <div id="logo">
+                            <img src={logo} className="app-logo" alt="Logotipo" />
+                            <span id="brand">
+                                <strong>Curso</strong>React
+                        </span>
+                        </div>
+                    </NavLink>
 
                     { /* MENU */ }
                     <nav id="menu">
