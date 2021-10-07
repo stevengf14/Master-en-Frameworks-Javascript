@@ -25,11 +25,8 @@ class Router extends Component {
     render() {
 
         return (
-
             <BrowserRouter>
                 <Header />
-
-
                 {/* CONFIGURAR RUTAS Y PÁGINAS */}
                 <Switch>
                     <Route exact path="/" component={Home} />
@@ -57,7 +54,6 @@ class Router extends Component {
 
                     <Route exact path="/test-route" component={TestSection} />
                     <Route exact path="/my-component" component={MyComponent} />
-
                     <Route exact path="/page-1" render={() => (
                         <React.Fragment>
                             <h1>Hola mundo de la ruta page-1</h1>
@@ -65,7 +61,6 @@ class Router extends Component {
                         </React.Fragment>
 
                     )} />
-
                     <Route exact path="/test/:name/:lastName?" render={(props) => {
                         var name = props.match.params.name;
                         var lastName = props.match.params.lastName;
@@ -86,16 +81,12 @@ class Router extends Component {
                         )
                     }} />
                     <Route component={Error} />
-
                 </Switch>
-                
                 <div className="clearfix"></div>
-
                 <Footer />
             </BrowserRouter>
         )
     }
-
 }
 
 export default Router;
