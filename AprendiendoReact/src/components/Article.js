@@ -96,13 +96,13 @@ class Article extends Component {
                             <p>
                                 {article.content}
                             </p>
-                            <Link to="/blog" className="btn btn-warning">Editar</Link>
+                            <Link to={'/blog/edit/' + article._id} className="btn btn-warning">Editar</Link>
                             <button onClick={
                                 () => {
                                     this.deleteArticle(article._id)
                                 }
                             } className="btn btn-danger">Eliminar</button>
-                            
+
                             <div className="clearfix"></div>
                         </article>
                     }
