@@ -19,6 +19,7 @@ import Search from './components/Search';
 import { Redirect } from 'react-router';
 import Article from './components/Article';
 import CreateArticle from './components/CreateArticle';
+import EditArticle from './components/EditArticle';
 
 class Router extends Component {
 
@@ -35,6 +36,7 @@ class Router extends Component {
                     <Route exact path="/blog/search/:search" component={Search} />
                     <Route exact path="/blog/article/:id" component={Article} />
                     <Route exact path="/blog/create" component={CreateArticle} />
+                    <Route exact path="/blog/edit/:id" component={EditArticle} />
                     <Route exact path="/form" component={Form} />
                     <Route exact path="/movies" component={Movies} />
                     <Route exact path="/blog/article/:id" render={() => (
