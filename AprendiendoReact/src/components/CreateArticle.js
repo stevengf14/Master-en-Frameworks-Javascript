@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import SimpleReactValidator from 'simple-react-validator'
 import Global from '../assets/Global';
+import Swal from 'sweetalert2'
 
 // Forms validations and alerts
 
@@ -75,11 +76,21 @@ class CreateArticle extends Component {
                                             article: res.data.article,
                                             status: 'success'
                                         });
+                                        Swal.fire(
+                                            'Artículo creado',
+                                            'El artículo ha sido creado correctamente',
+                                            'success'
+                                        );
                                     } else {
                                         this.setState({
                                             article: res.data.article,
                                             status: 'failed'
                                         });
+                                        Swal(
+                                            'Error',
+                                            'El artículo no ha sido creado',
+                                            'error'
+                                        );
                                     }
                                 });
                         } else {
@@ -120,12 +131,12 @@ class CreateArticle extends Component {
                         <div className="form-group">
                             <label htmlFor="title">Título</label>
                             <input type="text" name="title" ref={this.titleRef} onChange={this.changeState}></input>
-                            {this.validator.message('title', this.state.article.title, 'required|alpha_num_space')}
+                            {this.validator.message('title', this.state.article.title, 'required')}
                         </div>
                         <div className="form-group">
                             <label htmlFor="title">Contenido</label>
                             <textarea type="text" name="content" ref={this.contentRef} onChange={this.changeState}></textarea>
-                            {this.validator.message('content', this.state.article.content, 'required|alpha_num_space')}
+                            {this.validator.message('content', this.state.article.content, 'required')}
                         </div>
                         <div className="form-group">
                             <label htmlFor="title">Imagen</label>

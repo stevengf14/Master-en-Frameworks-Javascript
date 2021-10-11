@@ -3,8 +3,9 @@ import axios from 'axios';
 import Global from '../assets/Global';
 import Sidebar from './Sidebar';
 import Momment from 'react-moment';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import defaultImge from '../assets/images/default.jpg';
+import Swal from 'sweetalert2';
 
 class Article extends Component {
 
@@ -38,7 +39,40 @@ class Article extends Component {
         this.getArticleById();
     }
 
+    deleteArticle = (id) => {
+        Swal.fire({
+            title: "¿Desea eliminar el artículo?",
+            text: "Una vez eliminado, no podrá recuperar el artículo",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    axios.delete(this.url + 'article/' + id)
+                        .then(res => {
+                            this.setState({
+                                article: res.data.aticle,
+                                status: 'deleted'
+                            });
+                            Swal.fire(
+                                'Articulo eliminado',
+                                'El artículo ha sido eliminado correctamente',
+                                'success', {
+                                icon: "success"
+                            })
+                        });
+                } else {
+                    Swal.fire("No se ha eliminado")
+                }
+            })
+
+    }
+
     render() {
+        if (this.state.status === 'deleted') {
+            return <Redirect to="/blog" />
+        }
         var article = this.state.article;
         return (
             <div className="center">
@@ -60,10 +94,15 @@ class Article extends Component {
                                 <Momment locale="es" fromNow>{article.date}</Momment>
                             </span>
                             <p>
-                               {article.content}
+                                {article.content}
                             </p>
                             <Link to="/blog" className="btn btn-warning">Editar</Link>
-                            <Link to="/blog" className="btn btn-danger">Eliminar</Link>
+                            <button onClick={
+                                () => {
+                                    this.deleteArticle(article._id)
+                                }
+                            } className="btn btn-danger">Eliminar</button>
+                            
                             <div className="clearfix"></div>
                         </article>
                     }
